@@ -49,6 +49,7 @@ function copyTextToClipboard(text) {
 }
 
 function saveState(state) {
+  console.log(state)
   chrome.storage.local.set({state: JSON.stringify(state)})
 }
 
@@ -69,6 +70,7 @@ export default class Converter extends Component {
     chrome.storage.local.get('state', (obj) => {
       const { state } = obj
       const initialState = JSON.parse(state || '{}')
+      console.log(initialState)
       this.setState(initialState)
     })
   }
@@ -81,8 +83,7 @@ export default class Converter extends Component {
     try {
       const btc = event.target.value
       const sat = sb.toSatoshi(btc)
-      this.setState({btc, sat})
-      saveState(this.state)
+      this.setState({btc, sat}, () => saveState(this.state))
     } catch (e) {
       // use the error throw by sb parser
       //console.error(e)
@@ -93,8 +94,7 @@ export default class Converter extends Component {
     try {
       const sat = event.target.value
       const btc = sb.toBitcoin(sat)
-      this.setState({sat, btc})
-      saveState(this.state)
+      this.setState({btc, sat}, () => saveState(this.state))
     } catch (e) {
       // use the error throw by sb parser
       //console.error(e)

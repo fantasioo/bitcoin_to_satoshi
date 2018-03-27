@@ -3,7 +3,6 @@ import Beer from './Beer'
 
 const styles = {
   container: {
-    background: '-webkit-linear-gradient(left, #f75c1a 0%,#f7601a 43%,#f7931a 97%)',
     height: '45px',
     display: 'flex',
     justifyContent: 'center',
@@ -11,6 +10,7 @@ const styles = {
   },
   beer: {
     fontFamily: 'Arial, Helvetica',
+    fontSize: '12px',
     background: '#363636',
     color: '#fff',
     border: 'none',
@@ -23,12 +23,13 @@ const styles = {
   },
   address: {
     fontFamily: 'Arial, Helvetica',
+    fontSize: '11px',
     background: '#209cee',
     color: '#fff',
     border: 'none',
     borderBottomRightRadius: '3px',
     borderTopRightRadius: '3px',
-    padding: '7px',
+    padding: '6px',
     margin: 0,
     verticalAlign: 'bottom'
   }
@@ -37,7 +38,7 @@ const styles = {
 export default function Footer() {
   return (
     <footer style={styles.container}>
-      <button style={styles.beer}>Buy me a beer &nbsp;<Beer fill="#fff" height="18px"/></button>
+      <button style={styles.beer}>Buy me a beer &nbsp;<Beer fill="#fff" height="15px"/></button>
       <span style={styles.address}>1CL4hRq183mGWL4xHATnXehYkvticyE3hv</span>
     </footer>
   )
