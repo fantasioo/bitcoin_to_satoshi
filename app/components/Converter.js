@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import sb from 'satoshi-bitcoin'
+import sb from './satoshi-bitcoin'
+window.sb = sb
 
 import Btc from './Btc'
 import Satoshi from './Satoshi'
@@ -39,17 +40,16 @@ const styles = {
 }
 
 function copyTextToClipboard(text) {
-  var copyFrom = document.createElement("textarea");
-  copyFrom.textContent = text;
-  var body = document.getElementsByTagName('body')[0];
-  body.appendChild(copyFrom);
-  copyFrom.select();
-  document.execCommand('copy');
-  body.removeChild(copyFrom);
+  var copyFrom = document.createElement("textarea")
+  copyFrom.textContent = text
+  var body = document.getElementsByTagName('body')[0]
+  body.appendChild(copyFrom)
+  copyFrom.select()
+  document.execCommand('copy')
+  body.removeChild(copyFrom)
 }
 
 function saveState(state) {
-  console.log(state)
   chrome.storage.local.set({state: JSON.stringify(state)})
 }
 
@@ -70,7 +70,6 @@ export default class Converter extends Component {
     chrome.storage.local.get('state', (obj) => {
       const { state } = obj
       const initialState = JSON.parse(state || '{}')
-      console.log(initialState)
       this.setState(initialState)
     })
   }
